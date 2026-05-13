@@ -1,0 +1,43 @@
+
+
+#ifndef AUTODOC_TEXT_H
+#define AUTODOC_TEXT_H
+
+
+typedef struct {
+
+	str topic;
+	str text;
+
+} autodoc_topic;
+
+
+static const char *const autodoc_text =
+	{%- for line in escape(stringtable, 100) %}
+	"{{line}}"{% if loop.last %}; {% endif %}
+	{%- endfor %}
+
+
+static const autodoc_topic autodoc_topics[] = {
+
+{%- for grp in topics | sort(attribute='name') | groupby('name') %}
+//
+// Topic {{grp.grouper}} covered in:
+	{%- for t in grp.list %}
+//     {{t.file}}:{{t.line}}
+	{%- endfor %}
+//
+	{%- for t in grp.list %}
+	{ CSTRN(autodoc_text+{{t.topic_p}}, {{t.topic_l}}), CSTRN(autodoc_text+{{t.text_p}}, {{t.text_l}}) },
+	{%- endfor %}
+{%- endfor %}
+
+	CSTR(""), CSTR("")
+};
+
+static const uint autodoc_topic_count = {{topics | length}};
+
+
+
+#endif
+

@@ -1,0 +1,37 @@
+diff -upr curl-8.13.0-orig/include/curl/curl.h curl-8.13.0/include/curl/curl.h
+--- curl-8.13.0-orig/include/curl/curl.h	2025-07-15 00:23:36.855116952 +0300
++++ curl-8.13.0/include/curl/curl.h	2025-07-15 00:27:45.563107208 +0300
+@@ -253,7 +253,7 @@ typedef int (*curl_xferinfo_callback)(vo
+ 
+ #ifndef CURL_MAX_READ_SIZE
+   /* The maximum receive buffer size configurable via CURLOPT_BUFFERSIZE. */
+-#define CURL_MAX_READ_SIZE (10*1024*1024)
++#define CURL_MAX_READ_SIZE  1024
+ #endif
+ 
+ #ifndef CURL_MAX_WRITE_SIZE
+@@ -263,7 +263,7 @@ typedef int (*curl_xferinfo_callback)(vo
+      who feel adventurous. The practical minimum is about 400 bytes since
+      libcurl uses a buffer of this size as a scratch area (unrelated to
+      network send operations). */
+-#define CURL_MAX_WRITE_SIZE 16384
++#define CURL_MAX_WRITE_SIZE 1024
+ #endif
+ 
+ #ifndef CURL_MAX_HTTP_HEADER
+diff -upr curl-8.13.0-orig/src/urldata.h curl-8.13.0/src/urldata.h
+--- curl-8.13.0-orig/src/urldata.h	2025-07-15 00:23:36.891116950 +0300
++++ curl-8.13.0/src/urldata.h	2025-07-15 00:26:12.403110858 +0300
+@@ -226,9 +226,9 @@ typedef ssize_t (Curl_recv)(struct Curl_
+    libcurl able to do significantly faster uploads in some circumstances. Even
+    larger buffers can help further, but this is deemed a fair memory/speed
+    compromise. */
+-#define UPLOADBUFFER_DEFAULT 65536
+-#define UPLOADBUFFER_MAX (2*1024*1024)
+-#define UPLOADBUFFER_MIN CURL_MAX_WRITE_SIZE
++#define UPLOADBUFFER_DEFAULT 1024
++#define UPLOADBUFFER_MAX     1024
++#define UPLOADBUFFER_MIN     CURL_MAX_WRITE_SIZE
+ 
+ #define CURLEASY_MAGIC_NUMBER 0xc0dedbadU
+ #ifdef DEBUGBUILD

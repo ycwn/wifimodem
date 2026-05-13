@@ -1,0 +1,86 @@
+
+#
+# LaserWave-like theme for kconfiglib
+#
+
+#
+# Copied from kconfiglib
+#
+# 
+# Color schemes
+# =============
+# 
+# It is possible to customize the color scheme by setting the MENUCONFIG_STYLE
+# environment variable. For example, setting it to 'aquatic' will enable an
+# alternative, less yellow, more 'make menuconfig'-like color scheme, contributed
+# by Mitja Horvat (pinkfluid).
+# 
+# This is the current list of built-in styles:
+#     - default       classic Kconfiglib theme with a yellow accent
+#     - monochrome    colorless theme (uses only bold and standout) attributes,
+#                     this style is used if the terminal doesn't support colors
+#     - aquatic       blue-tinted style loosely resembling the lxdialog theme
+# 
+# It is possible to customize the current style by changing colors of UI
+# elements on the screen. This is the list of elements that can be stylized:
+# 
+#     - path          Top row in the main display, with the menu path
+#     - separator     Separator lines between windows. Also used for the top line
+#                     in the symbol information display.
+#     - list          List of items, e.g. the main display
+#     - selection     Style for the selected item
+#     - inv-list      Like list, but for invisible items. Used in show-all mode.
+#     - inv-selection Like selection, but for invisible items. Used in show-all
+#                     mode.
+#     - help          Help text windows at the bottom of various fullscreen
+#                     dialogs
+#     - show-help     Window showing the help text in show-help mode
+#     - frame         Frame around dialog boxes
+#     - body          Body of dialog boxes
+#     - edit          Edit box in pop-up dialogs
+#     - jump-edit     Edit box in jump-to dialog
+#     - text          Symbol information text
+# 
+# The color definition is a comma separated list of attributes:
+# 
+#     - fg:COLOR      Set the foreground/background colors. COLOR can be one of
+#       * or *        the basic 16 colors (black, red, green, yellow, blue,
+#     - bg:COLOR      magenta, cyan, white and brighter versions, for example,
+#                     brightred). On terminals that support more than 8 colors,
+#                     you can also directly put in a color number, e.g. fg:123
+#                     (hexadecimal and octal constants are accepted as well).
+#                     Colors outside the range -1..curses.COLORS-1 (which is
+#                     terminal-dependent) are ignored (with a warning). The COLOR
+#                     can be also specified using a RGB value in the HTML
+#                     notation, for example #RRGGBB. If the terminal supports
+#                     color changing, the color is rendered accurately.
+#                     Otherwise, the visually nearest color is used.
+# 
+#                     If the background or foreground color of an element is not
+#                     specified, it defaults to -1, representing the default
+#                     terminal foreground or background color.
+# 
+#                     Note: On some terminals a bright version of the color
+#                     implies bold.
+#     - bold          Use bold text
+#     - underline     Use underline text
+#     - standout      Standout text attribute (reverse color)
+# 
+
+aquatic
+
+path          = fg: blue,    bg: black,   bold
+separator     = fg: cyan,    bg: black,   bold
+list          = fg: magenta, bg: black,   bold
+selection     = fg: white,   bg: magenta, bold
+inv-list      = list
+inv-selection = selection
+help          = fg: blue,    bg: black,   bold
+show-help     = fg: bkue,    bg: black,   bold
+frame         = fg: red,     bg: black,   standout
+body          = fg: blue,    bg: black,   bold
+edit          = fg: cyan,    bg: black,   bold
+jump-edit     = fg: cyan,    bg: black,   bold
+text          = fg: white,   bg: black,   bold
+
+

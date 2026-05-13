@@ -1,0 +1,53 @@
+
+#
+#
+# Fuck espressif that made this byzantine convoluted monstrosity.
+# And fuck whoever had the bright idea to fuck around with the ELF sections.
+# Fuck you all for wasting a week of my time, including my fucking weekend.
+#
+#
+
+#
+# Shell command list 
+#
+[sections:section_modem_command_list]
+entries:
+	.modem_command_list+
+
+
+
+[scheme:scheme_modem_command_list]
+entries:
+	section_modem_command_list -> flash_rodata
+
+
+
+[mapping:map_modem_command_list]
+archive: *
+entries:
+	* (scheme_modem_command_list);
+	section_modem_command_list -> flash_rodata  KEEP() ALIGN(4, pre, post) SURROUND(modem_command_list)
+
+
+#
+# Stream constructor list
+#
+[sections:section_modem_protocol_list]
+entries:
+	.modem_protocol_list+
+
+
+
+[scheme:scheme_modem_protocol_list]
+entries:
+	section_modem_protocol_list -> flash_rodata
+
+
+
+[mapping:map_modem_protocol_list]
+archive: *
+entries:
+	* (scheme_modem_protocol_list);
+	section_modem_protocol_list -> flash_rodata  KEEP() ALIGN(4, pre, post) SURROUND(modem_protocol_list)
+
+
